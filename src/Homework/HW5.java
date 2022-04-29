@@ -6,7 +6,6 @@ import static java.lang.Math.round;
 import static java.lang.System.*;
 
 public class HW5 {
-
     public static int number = 2;
 
     public static void numberTask() {
