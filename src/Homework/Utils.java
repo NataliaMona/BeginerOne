@@ -2,7 +2,7 @@ package Homework;
 
 public class Utils {
 
-    public static int number = 3;
+    public static int number = 1;
 
     public static void taskNumber(){
 
@@ -16,7 +16,5 @@ public class Utils {
 
     public static void main(String[] args) {
 
-
     }
-
 }

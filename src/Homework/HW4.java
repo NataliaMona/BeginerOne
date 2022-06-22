@@ -512,7 +512,6 @@ public class HW4 {
         short number = 12345;
 
         out.println(numberShort(number));
-
     }
 }
 
