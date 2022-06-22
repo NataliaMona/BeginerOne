@@ -19,7 +19,6 @@ public class HW5 {
         out.println(whitespace);
 
         number++;
-
     }
 
     public static String dayOfTheWeek (int dayOfTheWeekNum) {
@@ -49,7 +48,6 @@ public class HW5 {
         }
 
         return dayOfTheWeek;
-
     }
 
     public static double numberMaximum (double x, double y, double z){
@@ -66,6 +64,7 @@ public class HW5 {
         } else{
             max = z;
         }
+
         return max;
     }
 
@@ -84,67 +83,51 @@ public class HW5 {
         } else{
             min = c;
         }
+
         return min;
     }
 
-    public static String tempCatAvarage(double x, double y, double z, double v, double q) {
+    public static double tempCatAvarage(double x, double y, double z, double v, double q) {
 
-        Double avarage = null;
+        double min = 35.5;
+        double max = 43.1;
+        double average;
+        double numberOfReadings = 1 + (y != 0 ? 1 : 0) + (z != 0 ? 1 : 0) + (v != 0 ? 1 : 0) + (q != 0 ? 1 : 0);
+        double ceil = Math.pow(10,1);
 
-        if ((x > 27 && x < 43) && (y == 0) && (z == 0) && (v == 0) && (q == 0)) {
-            avarage = x;
+        if((x >= min && x <= max) && (y == 0 || (y >= min && y <= max)) && (z == 0 || (z >= min && z <= max)) &&
+                (v == 0 || (v >= min && v <= max)) && (q == 0 || (q >= min && q <= max))) {
 
-        }
-        if ((x > 27 && x < 43) && (y > 27 && y < 43) && (z == 0) && (v == 0) && (q == 0)) {
-            avarage = (x + y) / 2;
+            average = Math.round(((x + y + z + v + q) / numberOfReadings) * ceil) / ceil;
+        }else{
 
-        }
-        if ((x > 27 && x < 43) && (y > 27 && y < 43) && (z > 27 && z < 43) && (v == 0) && (q == 0)) {
-            avarage = (x + y + z) / 3;
-
-        }
-        if ((x > 27 && x < 43) && (y > 27 && y < 43) && (z > 27 && z < 43) && (v > 27 && v < 43) && (q == 0)) {
-            avarage = (x + y + z + v) / 4;
-
-        }
-        if ((x > 27 && x < 43) && (y > 27 && y < 43) && (z > 27 && z < 43) && (v > 27 && v < 43)
-                && (q > 27 && q < 43)) {
-            avarage = (x + y + z + v + q) / 5;
+            average = -1.0;
         }
 
-        String result = "Средняя температура кота = ";
-        out.println(result + avarage);
-
-        return result;
+        return average;
     }
 
     public static String converter(double c) {
         // 6. Написать метод, который принимает на вход десятичное число (например, 10.75), и возвращает строку “10 руб
         // 75 коп”.
 
-        Double a1 = floor(c);
-        double ostatok = (c - a1) * 100;
-        Integer rub = (int) round(a1);
-        Integer cop = (int) round(ostatok);
+        double a1 = floor(c);
+        double remains = (c - a1) * 100;
+        int rub = (int) round(a1);
+        int cop = (int) round(remains);
 
-        String str = ("десятичное число " + c + " возвращает строку " + rub + " руб " + cop + " коп.");
-
-        return str;
-
+        return ("десятичное число " + c + " возвращает строку " + rub + " руб " + cop + " коп.");
     }
 
     public static String converterTwo (double a) {
         // 7. Написать метод, который принимает на вход десятичное число и возвращает строку “10 кг 75 гр”.
 
-        Double a1 = floor(a);
-        double ostatoc = (a - a1) * 1000;
-        Integer kg = (int) round(a1);
-        Integer gr = (int) round(ostatoc);
+        double a1 = floor(a);
+        double remains = (a - a1) * 1000;
+        int kg = (int) round(a1);
+        int gr = (int) round(remains);
 
-        String asd = "десятичное число " + a + " возвращает строку " + kg+ " кг " + gr + " гр.";
-
-        return asd;
-
+        return "десятичное число " + a + " возвращает строку " + kg+ " кг " + gr + " гр.";
     }
 
     public static double priceQuantity (double a, int b){
@@ -152,19 +135,11 @@ public class HW5 {
         // или количество в штуках). Алгоритм возвращает сумму покупки в виде десятичного числа.
 
         double price = 27.98;
-        int quontity = 16;
-        double cost = (price * quontity);
-
-        if (cost < 0){
-            cost = cost * (-1);
-        }else {
-            cost = cost;
-        }
+        int quantity = 16;
+        double cost = (price * quantity);
 
         double scale = pow(10, 2);
         cost = ceil(cost * scale) / scale;
-
-        out.println(cost);
 
         return cost;
     }
@@ -172,34 +147,29 @@ public class HW5 {
     public static String cheque (double price, double weight, String name){
         //9. Написать метод, который принимает на вход необходимые параметры, и печатает чек.
 
-        Double price1 = floor(price);
-        double ostatok = (price - price1) * 100;
-        Integer rub = (int) round(price1);
-        Integer cop = (int) round(ostatok);
+        double price1 = floor(price);
+        double remains = (price - price1) * 100;
+        int rub = (int) round(price1);
+        int cop = (int) round(remains);
 
-        Double weight1 = floor(weight);
-        double ostatoc = (weight - weight1) * 1000;
-        Integer kg = (int) round(weight1);
-        Integer gr = (int) round(ostatoc);
+        double weight1 = floor(weight);
+        double remains1 = (weight - weight1) * 1000;
+        int kg = (int) round(weight1);
+        int gr = (int) round(remains1);
 
         double total = price * weight;
-        Double total1 = floor(total);
-        double ostatok1 = (total - total1) * 100;
-        Integer rub1 = (int) round(total1);
-        Integer cop1 = (int) round(ostatok1);
+        double total1 = floor(total);
+        double remains2 = (total - total1) * 100;
+        int rub1 = (int) round(total1);
+        int cop1 = (int) round(remains2);
 
-        String presioParaKilo = "Цена за 1 кг";
+        String precioParaKilo = "Цена за 1 кг";
         String quantity = "Количество товара";
         String amountToBePaid = "Сумма к оплате";
-        String line = "----------------------------------";
+        String cheque = name + "\n" + precioParaKilo + "\t\t" + rub + " руб " + cop + " коп" + "\n" + quantity +
+                "\t" + kg+ " кг " + gr + " гр" + "\n" + amountToBePaid + "\t\t" + rub1 + " руб " + cop1 + " коп";
 
-        out.println(name);
-        out.println(presioParaKilo + "\t\t" + rub + " руб " + cop + " коп.");
-        out.println(quantity + "\t" + kg+ " кг " + gr + " гр.");
-        out.println(line);
-        out.println(amountToBePaid + "\t\t" + rub1 + " руб " + cop1 + " коп.");
-
-        return name;
+        return cheque;
     }
 
     public static String wages (double hoursPerDay, double costPerHour, int numberOfDaysWorked){
@@ -208,21 +178,19 @@ public class HW5 {
 
         double wages = (hoursPerDay * costPerHour) * numberOfDaysWorked;
 
-        Double a1 = floor(wages);
-        double remains = (wages - a1) * 100;
-        Integer rub = (int) round(a1);
-        Integer cop = (int) round(remains);
+        double a = floor(wages);
+        double remains = (wages - a) * 100;
+        int rub = (int) round(a);
+        int cop = (int) round(remains);
 
-        String monthlySalary = rub + " руб. " + cop + " коп.";
-
-        return monthlySalary;
+        return rub + " руб. " + cop + " коп.";
     }
 
-    public static String statement (String name){
+    public static String statement (String name, String month){
         //11. Написать метод, который принимает на вход необходимые параметры и печатает строку ведомости выдачи зарплаты
         // сотрудникам.
 
-        return name;
+        return wages(7,8.50, 22);
     }
 
     public static int table(int x){
@@ -260,19 +228,19 @@ public class HW5 {
 
         int raz1 = a - b;
         int raz2 = a - c;
-        int median1;
+        int median;
 
         if (raz1 > 0 && raz2 < 0 || raz2 > 0 && raz1 < 0){
-            median1 = a;
+            median = a;
 
         }else if (raz1 > raz2){
-            median1 = b;
+            median = b;
 
         }else {
-            median1 = c;
+            median = c;
         }
 
-        return median1;
+        return median;
     }
 
     public static String averageMedian (int a, int b, int c){
@@ -306,7 +274,7 @@ public class HW5 {
 
         return aV;
     }
-        //naxtUp - Method округляет double
+
     public static String numberFloor (double a){
         //15. Написать метод, который использует методы класса Math, принимает на вход сумму к оплате (например, 10.75)
         // и округляет сумму в пользу покупателя. Метод возвращает новую сумму к оплате в виде строки, например “10 руб
@@ -314,9 +282,9 @@ public class HW5 {
 
         double aa = floor(a);
         double a1 = aa;
-        double ostatok = (a1 - aa) * 100;
-        Integer rub = (int) round(a);
-        Integer cop = (int) round(ostatok);
+        double remains = (a1 - aa) * 100;
+        int rub = (int) round(a);
+        int cop = (int) round(remains);
 
         String result = rub + " руб.\t" + cop + " коп.";
 
@@ -330,9 +298,92 @@ public class HW5 {
         double y = (sqrt(z)) / PI;
         y = ceil(y);
 
-        out.println(y);
-
         return y;
+    }
+
+    public static int task171(int x, int y){
+        //17.1 write the java statement that assigns 1 to x if y is greater than 0
+        // напишите оператор java, который присваивает 1 x, если y больше 0
+
+        if(y > 0){
+            x = 1;
+        }else{
+            x = x;
+        }
+
+        return x;
+    }
+
+    public static int task172(double number){
+        //17.2 suppose that score is a variable of type double. Write the java statement that increases the score by 5
+        //marks if score is between 80 y 90
+        //предположим, что оценка является переменной типа double. Напишите оператор java, который увеличивает оценку на
+        //5 баллов, если оценка находится в диапазоне от 80 до 90
+
+        if (number < 90 && number > 80){
+            number = number + 5;
+        }else{
+            number = number;
+        }
+
+        int result = (int)round(number);
+
+        return result;
+    }
+
+    public static boolean task173(int i, int v){
+        //17.3 rewrite in java the following statement without using the NOT (!) operator
+        //перепишите в java следующее утверждение без использования оператора NOT (!)
+        // item = !((i<10) || (v>50))
+
+        boolean item = ((i > 10) && (v < 50));
+
+        return item;
+    }
+
+    public static boolean task174(int x){
+        // 17.4 write the java statement that prints true if x is an odd number and positive
+        //напишите оператор java, который выводит значение true, если x является нечетным числом и положительным
+
+        boolean number;
+
+        if (x > 0 && (x % 2 != 0)){
+            number = true;
+        }else {
+            number = false;
+        }
+
+        return number;
+    }
+
+    public static boolean task175(int x, int y){
+        //17.5 write the java statement that prints true if both x and y are positive numbers
+        //напишите оператор java, который выводит значение true, если оба x и y являются положительными числами
+
+        boolean number;
+
+        if(x > 0 && y > 0){
+           number = true;
+        }else {
+            number = false;
+        }
+
+        return number;
+    }
+
+    public static boolean task176(int x, int y){
+        //17.6 write the java statement that prints true if  x and y have the same sign (+/-)
+        //напишите оператор java, который выводит значение true, если x и y имеют одинаковый знак (+/-)
+
+        boolean number;
+
+        if((x > 0 && y > 0) || (x < 0 && y < 0)){
+            number = true;
+        }else {
+            number = false;
+        }
+
+        return number;
     }
 
     public static String numberRandomDegrees (int r){
@@ -345,7 +396,6 @@ public class HW5 {
         int round = (int) round(y);
 
         String result = "Число " + a + " в степени " + r + " = " + round;
-        out.println(result);
 
         return result;
     }
@@ -354,33 +404,35 @@ public class HW5 {
         //19. Написать метод, который возвращает случайное число в пределах от 1 до 99 включительно.
 
         double a = 1 + random() * 100;
+        int random = (int) floor(a);
 
-        System.out.println(a);
-
-        return a;
+        return random;
     }
 
-   // public static int qwe(int y){
-        //17.1
-  //      int x;
+    public static boolean isLeapYear(int year){
+        //20. assume that the following declarations have been made:
+        //предположим, что были сделаны следующие заявления:
+        // write a fragment that will assign b true, if a represents a leap year and false otherwise
+        //напишите фрагмент, который присвоит b значение true, если a представляет високосный год, и false в противном
+        // случае
 
-    //    if (y > 0) {
-   //         x = 1;
-   //     }
+        boolean isLeapYear;
 
-   //     return x;
-   // }
+        if(((year % 4 == 0) && (year % 100 != 0 )) || (year % 400 == 0)){
+            isLeapYear = true;
+        } else {
+            isLeapYear = false;
+        }
 
-
-
-
+       return isLeapYear;
+    }
 
     public static void main(String[] args){
 
         numberTask();
         //2. Написать метод, который принимает на вход число от 1 до 7  и возвращает день недели
 
-        out.println(dayOfTheWeek(7));
+        out.println(dayOfTheWeek(5));
 
         numberTask();
         //3. given three values  (x;y;z) determine the largest value and assign this value to the variable largest
@@ -396,7 +448,7 @@ public class HW5 {
         numberTask();
         //5.Написать алгоритм вычисления среднего значения из 5 показателей температуры тела кота.
 
-        tempCatAvarage(25.0, 30.0, 40.0, 35.0, 35.0);
+        out.println("Средняя температура кота = " + tempCatAvarage(40.0, 39.0, 41.2, 0.0, 0.0));
 
         numberTask();
         //6. Написать метод, который принимает на вход десятичное число (например, 10.75), и возвращает строку “10 руб
@@ -418,9 +470,9 @@ public class HW5 {
         numberTask();
         //9. Написать метод, который принимает на вход необходимые параметры, и печатает чек.
 
-        cheque(3.40, 5.250, "Яблоки");
+        out.println(cheque(3.40, 5.250, "Яблоки"));
         out.println(" ");
-        cheque(1.30, 5.0, "Хлеб");
+        out.println(cheque(1.30, 5.0, "Хлеб"));
 
         numberTask();
         //10. Написать метод, который принимает на вход количество часов работы в день и стоимость одного часа работы,
@@ -432,9 +484,7 @@ public class HW5 {
         //11. Написать метод, который принимает на вход необходимые параметры и печатает строку ведомости выдачи
         // зарплаты сотрудникам.
 
-        out.println("Март 2022");
-        out.println(statement("Смирнова Мария Ивановна") + "\t\t" + wages(6.50, 100.20, 22));
-        out.println(statement("Серебряков Иван Петрович") + "\t" + wages(7.30, 200.38, 19));
+        out.println(statement("Сидорова Галина Ивановна", "Март"));
 
         numberTask();
         //12. Записать в виде метода:
@@ -464,41 +514,52 @@ public class HW5 {
         numberTask();
         //16. Посчитать с помощью методов класса Math
 
-        task(3, 4, 20);
+        out.println(task(3, 4, 20));
 
         numberTask();
-        //17. write the java statement that assigns 1 to x if y is greater then 0
+        //17.1 write the java statement that assigns 1 to x if y is greater then 0
         //(напишите инструкцию java, которая присваивает 1 x, если y больше 0)
 
-        int x;
-        int y = 5;
-        
-        if (y > 0){
-            x = 0;
-            
-        }else {
+        out.println(task171(10, 1));
 
-        }
+        //17.2 suppose that score is a variable of type double. Write the java statement that increases the score by 5
+        //marks if score is between 80 y 90
+        //предположим, что оценка является переменной типа double. Напишите оператор java, который увеличивает оценку на
+        //5 баллов, если оценка находится в диапазоне от 80 до 90
 
-        //out.println(x);
+        out.println(task172(73.4));
 
+        //17.3 rewrite in java the following statement without using the NOT (!) operator
+        //перепишите в java следующее утверждение без использования оператора NOT (!)
 
+        out.println(task173(2,100));
 
+        //17.4 write the java statement that prints true if x is an odd number and positive
+        //напишите оператор java, который выводит значение true, если x является нечетным числом и положительным
+
+        out.println(task174(6));
+
+        //17.5 write the java statement that prints true if both x and y are positive numbers
+        //напишите оператор java, который выводит значение true, если оба x и y являются положительными числами
+
+        out.println(task175(987,8));
+
+        //17.6 write the java statement that prints true if  x and y have the same sign (+/-)
+        //напишите оператор java, который выводит значение true, если x и y имеют одинаковый знак (+/-)
+
+        out.println(task176(9,987));
 
         numberTask();
         //18. Написать метод, который с помощью методов класса Math высчитывает любую степень сгенерированного
         // случайного числа. Метод возвращает математически округленное целое значение и выводит на экран:
         //“Число … в степени … = …”
 
-        numberRandomDegrees(4);
+        out.println(numberRandomDegrees(4));
 
         numberTask();
         //19. Написать метод, который возвращает случайное число в пределах от 1 до 99 включительно.
 
-        numberRandom();
-
-        int aRandom = (int) floor(numberRandom());
-        out.println(aRandom);
+        out.println(numberRandom());
 
         numberTask();
         //20. assume that the following declarations have been made:
@@ -507,21 +568,6 @@ public class HW5 {
         //напишите фрагмент, который присвоит b значение true, если a представляет високосный год, и false в противном
         // случае
 
-        int year = 2000;
-        boolean isLeapYear;
-
-        if ( ( (year % 4 == 0 ) && ( year % 100 != 0 ) ) || ( year % 400 == 0 ) ) {
-            isLeapYear = true;
-        } else {
-            isLeapYear = false;
-        }
-
-        out.println(isLeapYear);
-
-
+        out.println(isLeapYear(2035));
     }
-
 }
-
-
-
